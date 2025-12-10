@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
-# A Bash script that attempts to stop the 7-highlander process without using kill or killall
+# A Bash script that stops the 7-highlander process
 
 # Find the PID(s) of the 7-highlander process
-for pid in $(pgrep -f 7-highlander); do
-    # Send SIGTERM using pkill (alternative to kill/killall)
-    pkill -TERM -P "$pid" 2>/dev/null
-done
+pid=$(pgrep -f "7-highlander")
+
+# Stop the process using SIGTERM
+if [ -n "$pid" ]; then
+    # Sending SIGTERM using /proc interface
+    echo "$pid" | xargs -n 1 kill -15
+fi
