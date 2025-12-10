@@ -1,10 +1,9 @@
-!/usr/bin/env bash
-# A Bash script that stops the running 4-to_infinity_and_beyond process
+#!/usr/bin/env bash
+# A Bash script that stops the running 4-to_infinity_and_beyond process without using kill or killall
 
 # Find the PID(s) of the process
-PID=$(pgrep -f 4-to_infinity_and_beyond)
-
-# Kill the process if it exists
-if [ -n "$PID" ]; then
-    kill "$PID"
-fi
+for pid in $(pgrep -f 4-to_infinity_and_beyond); do
+    # Send SIGTERM by writing to /proc/<pid>/task/<pid>/... using the "kill" syscall
+    # But a simpler allowed method: use the "pkill" command instead of killall
+    pkill -TERM -P "$pid" 2>/dev/null
+done
