@@ -1,6 +1,11 @@
 #!/usr/bin/env bash
-# Stop the 4-to_infinity_and_beyond process without using kill or killall
+# A Bash script that loops indefinitely and prints "I am invincible!!!" when receiving SIGTERM
 
-pid="$(pgrep -f 4-to_infinity_and_beyond)"
+# Define a function to handle SIGTERM
+trap 'echo "I am invincible!!!"' SIGTERM
 
-echo 15 > "/proc/$pid/sigval"
+# Infinite loop
+while true; do
+    echo "To infinity and beyond"
+    sleep 2
+done
