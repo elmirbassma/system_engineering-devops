@@ -2,4 +2,4 @@
 # A Bash script that displays lines containing "bash"
 # shellcheck disable=SC2009
 
-ps -A | grep bash
+ps -ef | grep bash
