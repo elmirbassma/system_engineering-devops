@@ -1,0 +1,2 @@
+#!/usr/bin/env bash
+> hello  # create an empty file called hello
